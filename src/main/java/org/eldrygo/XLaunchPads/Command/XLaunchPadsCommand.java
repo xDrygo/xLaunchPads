@@ -29,6 +29,12 @@ public class XLaunchPadsCommand implements CommandExecutor {
 
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         String action = args[0];
+
+        if (args.length == 0) {
+            sender.sendMessage(chatUtils.getMessage("error.usage", null));
+            return true;
+        }
+
         if (sender.hasPermission("xlaunchpads.admin")) {
             switch (action) {
                 case "reload" -> handleReload(sender);
