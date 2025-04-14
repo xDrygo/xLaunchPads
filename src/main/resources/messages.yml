@@ -5,6 +5,7 @@ command:
     success: "%prefix% #a0ff72✔ Plugin reloaded successfully."
   set:
     not_a_pressure_plate: "%prefix% #FF0000🚫 You need to be aiming for a pressure plate."
+    already_exists: "%prefix% #FF0000🚫 Already exists a pressure plate in this location."
     success: "%prefix% #a0ff72✔ Succesfully set the pressure plate."
 error:
   usage: "%prefix% #FF0000🚫 Need to specify a sub-command."
