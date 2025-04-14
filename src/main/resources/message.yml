@@ -1,0 +1,9 @@
+prefix: "#ff902e&lx&r&lLaunchPads &8»&r"
+
+command:
+  reload:
+    error: "%prefix% #FF0000🚫 Failed on plugin reload."
+    success: "%prefix% #a0ff72✔ Plugin reloaded successfully."
+  set:
+    not_a_pressure_plate: "%prefix% #FF0000🚫 You need to be aiming for a pressure plate."
+    success: "%prefix% #a0ff72✔ Succesfully set the pressure plate."

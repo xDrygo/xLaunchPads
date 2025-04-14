@@ -1,0 +1,25 @@
+launchpads: []
+launch-power:
+  horizontal: 2.0
+  vertical: 1.0
+effects:
+  sound:
+    enabled: true
+    sounds:
+      - type: ENTITY_FIREWORK_ROCKET_LAUNCH
+        volume: 1.0
+        pitch: 1.0
+      - type: BLOCK_NOTE_BLOCK_BELL
+        volume: 2.0
+        pitch: 1.6
+  particles:
+    enabled: true
+    types:
+      - CLOUD
+      - CRIT
+    count: 20
+    offset:
+      x: 0.3
+      y: 0.1
+      z: 0.3
+    speed: 0.01
