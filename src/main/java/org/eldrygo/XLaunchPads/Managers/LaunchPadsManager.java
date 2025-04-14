@@ -3,30 +3,28 @@ package org.eldrygo.XLaunchPads.Managers;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.eldrygo.XLaunchPads.XLaunchPads;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LaunchPadsManager {
-    private XLaunchPads plugin;
-    private FileConfiguration config = plugin.getConfig();
+    private final XLaunchPads plugin;
 
     public LaunchPadsManager(XLaunchPads plugin) {
         this.plugin = plugin;
     }
 
     public void addLaunchpadLocation(Location location) {
-        List<String> list = config.getStringList("launchpads");
+        List<String> list = plugin.getConfig().getStringList("launchpads");
         list.add(serializeLocation(location));
-        config.set("launchpads", list);
+        plugin.getConfig().set("launchpads", list);
         plugin.saveConfig();
     }
 
     public List<Location> getLaunchpadLocations() {
         List<Location> locations = new ArrayList<>();
-        for (String s : config.getStringList("launchpads")) {
+        for (String s : plugin.getConfig().getStringList("launchpads")) {
             locations.add(deserializeLocation(s));
         }
         return locations;

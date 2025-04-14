@@ -31,12 +31,8 @@ public class XLaunchPadsCommand implements CommandExecutor {
         String action = args[0];
         if (sender.hasPermission("xlaunchpads.admin")) {
             switch (action) {
-                case "reload" -> {
-                    handleReload(sender);
-                }
-                case "set" -> {
-                    handleSet(sender);
-                }
+                case "reload" -> handleReload(sender);
+                case "set" -> handleSet(sender);
             }
         }
         return false;
@@ -50,6 +46,7 @@ public class XLaunchPadsCommand implements CommandExecutor {
             player.sendMessage(chatUtils.getMessage("command.set.not_a_pressure_plate", player)); // commands.set.not_a_pressure_plate
         }
 
+        assert block != null;
         launchPadsManager.addLaunchpadLocation(block.getLocation());
         player.sendMessage(chatUtils.getMessage("command.set.sucesss", player)); // commands.set.success
     }

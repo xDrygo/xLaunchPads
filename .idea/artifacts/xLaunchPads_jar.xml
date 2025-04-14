@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="xLaunchPads:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="xLaunchPads.jar">
+      <element id="module-output" name="xLaunchPads" />
+    </root>
+  </artifact>
+</component>

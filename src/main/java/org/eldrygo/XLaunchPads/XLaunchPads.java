@@ -12,12 +12,11 @@ public class XLaunchPads extends JavaPlugin {
     public FileConfiguration config;
     public String prefix;
     private LogsUtils logsUtils;
-    private LaunchPadsManager launchPadsManager;
 
     public void onEnable() {
         this.logsUtils = new LogsUtils(this);
         ConfigManager configManager = new ConfigManager(this);
-        ChatUtils chatUtils = new ChatUtils(configManager);
+        ChatUtils chatUtils = new ChatUtils(configManager, this);
         LaunchPadsManager launchPadsManager = new LaunchPadsManager(this);
         LoadUtils loadUtils = new LoadUtils(this, configManager, chatUtils, launchPadsManager);
         loadUtils.loadFeatures();

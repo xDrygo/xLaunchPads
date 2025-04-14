@@ -1,22 +1,20 @@
 package org.eldrygo.XLaunchPads.Utils;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.eldrygo.XLaunchPads.Managers.ConfigManager;
 import org.eldrygo.XLaunchPads.XLaunchPads;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ChatUtils {
     private final ConfigManager configManager;
-    private XLaunchPads plugin;
+    private final XLaunchPads plugin;
 
-    public ChatUtils(ConfigManager configManager) {
+    public ChatUtils(ConfigManager configManager, XLaunchPads plugin) {
         this.configManager = configManager;
+        this.plugin = plugin;
     }
 
     public static String formatColor(String message) {
@@ -64,13 +62,5 @@ public class ChatUtils {
         message = message.replace("%prefix%", configManager.getPrefix());
 
         return ChatUtils.formatColor(message);
-    }
-    public List<String> getMessageList(String path) {
-        // Accede a la instancia de messagesConfig directamente
-        List<String> messages = configManager.getMessageConfig().getStringList(path);
-        if (messages == null) {
-            return new ArrayList<>();  // Devuelve una lista vacía si no se encuentra el mensaje
-        }
-        return messages;  // Retorna la lista de mensajes
     }
 }

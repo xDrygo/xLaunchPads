@@ -1,6 +1,6 @@
 name: xLaunchPads
 main: org.eldrygo.XLaunchPads.XLaunchPads
-version: 0.0.01
+version: 0.0.02
 api-version: 1.21
 authors: [Drygo]
 commands:

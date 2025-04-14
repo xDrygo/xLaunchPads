@@ -13,18 +13,6 @@ public class ConfigManager {
     public ConfigManager(XLaunchPads plugin) {
         this.plugin = plugin;
     }
-
-    public void reloadConfig() {
-        try {
-            FileConfiguration config = plugin.getConfig();
-            plugin.reloadConfig();
-            plugin.config = plugin.getConfig();
-            plugin.getLogger().info("✅ The config.yml file has been loaded successfully.");
-        } catch (Exception e) {
-            plugin.getLogger().severe("❌ Failed to reload plugin configuration due to an unexpected error: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
     public void reloadMessages() {
         try {
             File messagesFile = new File(plugin.getDataFolder(), "messages.yml");
