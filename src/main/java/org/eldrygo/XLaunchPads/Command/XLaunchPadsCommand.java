@@ -12,6 +12,7 @@ import org.eldrygo.XLaunchPads.Utils.ChatUtils;
 import org.eldrygo.XLaunchPads.XLaunchPads;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Console;
 import java.io.File;
 
 public class XLaunchPadsCommand implements CommandExecutor {
@@ -28,14 +29,13 @@ public class XLaunchPadsCommand implements CommandExecutor {
     }
 
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        String action = args[0];
-
-        if (args.length == 0) {
+        if (args.length < 1) {
             sender.sendMessage(chatUtils.getMessage("error.usage", null));
             return true;
         }
 
-        if (sender.hasPermission("xlaunchpads.admin")) {
+        if (sender.hasPermission("xlaunchpads.admin") || sender.isOp()) {
+            String action = args[0];
             switch (action) {
                 case "reload" -> handleReload(sender);
                 case "set" -> handleSet(sender);
@@ -51,10 +51,14 @@ public class XLaunchPadsCommand implements CommandExecutor {
         if (block == null || !block.getType().name().endsWith("_PRESSURE_PLATE")) {
             player.sendMessage(chatUtils.getMessage("command.set.not_a_pressure_plate", player)); // commands.set.not_a_pressure_plate
         }
+        if (launchPadsManager.isLaunchpadRegistered(block.getLocation())) {
+            player.sendMessage(chatUtils.getMessage("command.set.already_exists", player)); // commands.set.already_exists
+            return; // Salir si ya está registrada
+        }
 
         assert block != null;
         launchPadsManager.addLaunchpadLocation(block.getLocation());
-        player.sendMessage(chatUtils.getMessage("command.set.sucesss", player)); // commands.set.success
+        player.sendMessage(chatUtils.getMessage("command.set.success", player)); // commands.set.success
     }
 
     private void handleReload(CommandSender sender) {

@@ -16,6 +16,11 @@ public class LaunchPadsManager {
     }
 
     public void addLaunchpadLocation(Location location) {
+        // Verificar si ya está registrada
+        if (isLaunchpadRegistered(location)) {
+            return; // No hacer nada si ya está registrada
+        }
+
         List<String> list = plugin.getConfig().getStringList("launchpads");
         list.add(serializeLocation(location));
         plugin.getConfig().set("launchpads", list);
@@ -28,6 +33,17 @@ public class LaunchPadsManager {
             locations.add(deserializeLocation(s));
         }
         return locations;
+    }
+
+    public boolean isLaunchpadRegistered(Location location) {
+        // Comprobar si la ubicación ya está registrada
+        for (String s : plugin.getConfig().getStringList("launchpads")) {
+            Location registeredLocation = deserializeLocation(s);
+            if (registeredLocation.equals(location)) {
+                return true; // Ya está registrada
+            }
+        }
+        return false; // No está registrada
     }
 
     private String serializeLocation(Location loc) {
