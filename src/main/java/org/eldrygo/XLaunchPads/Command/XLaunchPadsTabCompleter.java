@@ -14,9 +14,11 @@ public class XLaunchPadsTabCompleter implements TabCompleter {
         List<String> completions = new ArrayList<>();
 
         if (args.length == 1) {
-            if ("reload".startsWith(args[0].toLowerCase()) && sender.hasPermission("xlaunchpads.admin")) {
+            if ("reload".startsWith(args[0].toLowerCase()) && (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
                 completions.add("reload");
-                completions.add("set");
+            }
+            if ("set".startsWith(args[0].toLowerCase()) && (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
+                completions.add("reload");
             }
         }
         return null;

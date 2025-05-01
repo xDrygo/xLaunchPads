@@ -23,7 +23,7 @@ public class ConfigManager {
                 plugin.getLogger().info("✅ The messages.yml file has been loaded successfully.");
             }
             messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
-            plugin.prefix = "#9ae5ff&lx&r&lUtils &8»&r &cDefault Prefix &8»&r";
+            plugin.prefix = "#ff902e&lx&r&lLaunchPads &8»&r &cDefault Prefix &8»&r";
         } catch (Exception e) {
             plugin.getLogger().severe("❌ Failed to load messages configuration due to an unexpected error: " + e.getMessage());
             e.printStackTrace();

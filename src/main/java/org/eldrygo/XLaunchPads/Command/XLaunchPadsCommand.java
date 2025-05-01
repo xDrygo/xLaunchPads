@@ -50,6 +50,7 @@ public class XLaunchPadsCommand implements CommandExecutor {
         Block block = player.getTargetBlockExact(5);
         if (block == null || !block.getType().name().endsWith("_PRESSURE_PLATE")) {
             player.sendMessage(chatUtils.getMessage("command.set.not_a_pressure_plate", player)); // commands.set.not_a_pressure_plate
+            return;
         }
         if (launchPadsManager.isLaunchpadRegistered(block.getLocation())) {
             player.sendMessage(chatUtils.getMessage("command.set.already_exists", player)); // commands.set.already_exists

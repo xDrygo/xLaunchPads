@@ -1,4 +1,9 @@
 launchpads: []
+block-launch:
+  enabled: true
+  block: LIME_CONCRETE_POWDER
+  horizontal: 0.0
+  vertical: 1.2
 launch-power:
   horizontal: 2.0
   vertical: 1.0
