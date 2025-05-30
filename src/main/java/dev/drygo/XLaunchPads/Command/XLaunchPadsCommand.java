@@ -1,4 +1,4 @@
-package org.eldrygo.XLaunchPads.Command;
+package dev.drygo.XLaunchPads.Command;
 
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -6,14 +6,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.eldrygo.XLaunchPads.Managers.ConfigManager;
-import org.eldrygo.XLaunchPads.Managers.LaunchPadsManager;
-import org.eldrygo.XLaunchPads.Utils.ChatUtils;
-import org.eldrygo.XLaunchPads.XLaunchPads;
+import dev.drygo.XLaunchPads.Managers.ConfigManager;
+import dev.drygo.XLaunchPads.Managers.LaunchPadsManager;
+import dev.drygo.XLaunchPads.Utils.ChatUtils;
+import dev.drygo.XLaunchPads.XLaunchPads;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.Console;
 import java.io.File;
+import java.util.List;
 
 public class XLaunchPadsCommand implements CommandExecutor {
     private final XLaunchPads plugin;
@@ -37,8 +36,38 @@ public class XLaunchPadsCommand implements CommandExecutor {
         if (sender.hasPermission("xlaunchpads.admin") || sender.isOp()) {
             String action = args[0];
             switch (action) {
-                case "reload" -> handleReload(sender);
-                case "set" -> handleSet(sender);
+                case "reload" -> {
+                    if (!sender.hasPermission("xlaunchpads.command.reload") && !sender.hasPermission("xlaunchpads.admin") && !sender.isOp()) {
+                        sender.sendMessage(chatUtils.getMessage("error.no_permission", null));
+                        return true;
+                    }
+                    handleReload(sender);
+                }
+                case "set" -> {
+                    if (!sender.hasPermission("xlaunchpads.command.set") && !sender.hasPermission("xlaunchpads.admin") && !sender.isOp()) {
+                        sender.sendMessage(chatUtils.getMessage("error.no_permission", null));
+                        return true;
+                    }
+                    handleSet(sender);
+                }
+                case "info" -> {
+                    if (!sender.hasPermission("xlaunchpads.command.info") && !sender.hasPermission("xlaunchpads.admin") && !sender.isOp()) {
+                        sender.sendMessage(chatUtils.getMessage("error.no_permission", null));
+                        return true;
+                    }
+                    infoXLaunchPads(sender);
+                }
+                case "help" -> {
+                    if (!sender.hasPermission("xlaunchpads.command.help") && !sender.hasPermission("xlaunchpads.admin") && !sender.isOp()) {
+                        sender.sendMessage(chatUtils.getMessage("error.no_permission", null));
+                        return true;
+                    }
+                    List<String> helpMessage = configManager.getMessageConfig().getStringList("command.help");
+                    for (String line : helpMessage) {
+                        sender.sendMessage(ChatUtils.formatColor(line));
+                    }
+                    return true;
+                }
             }
         }
         return false;
@@ -91,5 +120,23 @@ public class XLaunchPadsCommand implements CommandExecutor {
             return;
         }
         sender.sendMessage(chatUtils.getMessage("command.reload.success", (Player) sender));
+    }
+    private void infoXLaunchPads(CommandSender sender) {
+        sender.sendMessage(ChatUtils.formatColor("&7"));
+        sender.sendMessage(ChatUtils.formatColor("&7"));
+        sender.sendMessage(ChatUtils.formatColor("&8                          #ff902e&lx&r&f&lLaunchPads &8» &r&fInfo"));
+        sender.sendMessage(ChatUtils.formatColor("&7"));
+        sender.sendMessage(ChatUtils.formatColor("#fff18d&l                           ᴍᴀᴅᴇ ʙʏ"));
+        sender.sendMessage(ChatUtils.formatColor("&f                           Drygo #707070» &7&o(@eldrygo)"));
+        sender.sendMessage(ChatUtils.formatColor("&7"));
+        sender.sendMessage(ChatUtils.formatColor("#fff18d&l                  ʀᴜɴɴɪɴɢ ᴘʟᴜɢɪɴ ᴠᴇʀꜱɪᴏɴ"));
+        sender.sendMessage(ChatUtils.formatColor("&f                                    " + plugin.version));
+        sender.sendMessage(ChatUtils.formatColor("&7"));
+        sender.sendMessage(ChatUtils.formatColor("#fff18d&l               ᴅʀʏɢᴏ'ꜱ ɴᴏᴛᴇ ᴏꜰ ᴛʜᴇ ᴠᴇʀꜱɪᴏɴ"));
+        sender.sendMessage(ChatUtils.formatColor("&f  #FFFAAB        Welcome to xLaunchPads! I made this plugin because"));
+        sender.sendMessage(ChatUtils.formatColor("&f  #FFFAAB       this was a cosmetic I added to a event lobby so I maked"));
+        sender.sendMessage(ChatUtils.formatColor("&f  #FFFAAB                  it more complete so here is, enjoy."));
+        sender.sendMessage(ChatUtils.formatColor("&7"));
+        sender.sendMessage(ChatUtils.formatColor("&7"));
     }
 }

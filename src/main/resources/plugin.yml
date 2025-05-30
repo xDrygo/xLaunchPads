@@ -1,13 +1,21 @@
 name: xLaunchPads
-main: org.eldrygo.XLaunchPads.XLaunchPads
-version: 0.0.09
-api-version: 1.21
+main: dev.drygo.XLaunchPads.XLaunchPads
+version: 1.0
+api-version: 1.20
 authors: [Drygo]
 commands:
   xlaunchpads:
     description: "xLaunchPads main command"
-    permission: xlaunchpads.admin
 permissions:
   xlaunchpads.admin:
     description: "xLaunchPads admin permission"
     default: false
+    children:
+      xlaunchpads.command.help:
+       default: false
+      xlaunchpads.command.reload:
+        default: false
+      xlaunchpads.command.set:
+        default: false
+      xlaunchpads.command.info:
+        default: false

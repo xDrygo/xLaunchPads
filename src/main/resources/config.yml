@@ -1,25 +1,35 @@
 launchpads: []
-block-launch:
-  enabled: true
-  block: LIME_CONCRETE_POWDER
-  horizontal: 0.0
-  vertical: 1.2
 launch-power:
   horizontal: 2.0
   vertical: 1.0
+item-launch: []
+block-launch:
+  enabled: true
+  blocks:
+    LIME_CONCRETE_POWDER:
+      horizontal: 2
+      vertical: 5.5
+    BLACK_CONCRETE_POWDER:
+      horizontal: 2
+      vertical: 5.5
+    MAGENTA_CONCRETE_POWDER:
+      horizontal: 1
+      vertical: 1.5
 effects:
   sound:
     enabled: true
     sounds:
       - type: ENTITY_FIREWORK_ROCKET_LAUNCH
-        volume: 1.0
+        volume: 10
         pitch: 1.0
       - type: BLOCK_NOTE_BLOCK_BELL
-        volume: 2.0
+        volume: 10
         pitch: 1.6
   particles:
     enabled: true
     types:
+      - CLOUD
+      - CRIT
       - CLOUD
       - CRIT
     count: 20

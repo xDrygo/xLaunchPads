@@ -1,9 +1,9 @@
-package org.eldrygo.XLaunchPads.Managers;
+package dev.drygo.XLaunchPads.Managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.eldrygo.XLaunchPads.XLaunchPads;
+import dev.drygo.XLaunchPads.XLaunchPads;
 
 import java.util.ArrayList;
 import java.util.List;

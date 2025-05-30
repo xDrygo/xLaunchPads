@@ -1,9 +1,9 @@
-package org.eldrygo.XLaunchPads.Utils;
+package dev.drygo.XLaunchPads.Utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.eldrygo.XLaunchPads.Managers.ConfigManager;
-import org.eldrygo.XLaunchPads.XLaunchPads;
+import dev.drygo.XLaunchPads.Managers.ConfigManager;
+import dev.drygo.XLaunchPads.XLaunchPads;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +40,7 @@ public class ChatUtils {
     }
     public String getMessage(String path, Player player) {
         if (configManager == null) {
-            throw new IllegalStateException("ConfigManager no está inicializado.");
+            throw new IllegalStateException("ConfigManager is not initialized.");
         }
 
         String message = configManager.getMessageConfig().isList(path)

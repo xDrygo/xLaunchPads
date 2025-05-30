@@ -1,19 +1,21 @@
-package org.eldrygo.XLaunchPads;
+package dev.drygo.XLaunchPads;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.eldrygo.XLaunchPads.Managers.ConfigManager;
-import org.eldrygo.XLaunchPads.Managers.LaunchPadsManager;
-import org.eldrygo.XLaunchPads.Utils.ChatUtils;
-import org.eldrygo.XLaunchPads.Utils.LoadUtils;
-import org.eldrygo.XLaunchPads.Utils.LogsUtils;
+import dev.drygo.XLaunchPads.Managers.ConfigManager;
+import dev.drygo.XLaunchPads.Managers.LaunchPadsManager;
+import dev.drygo.XLaunchPads.Utils.ChatUtils;
+import dev.drygo.XLaunchPads.Utils.LoadUtils;
+import dev.drygo.XLaunchPads.Utils.LogsUtils;
 
 public class XLaunchPads extends JavaPlugin {
     public FileConfiguration config;
     public String prefix;
     private LogsUtils logsUtils;
+    public String version;
 
     public void onEnable() {
+        version = getDescription().getVersion();
         this.logsUtils = new LogsUtils(this);
         ConfigManager configManager = new ConfigManager(this);
         ChatUtils chatUtils = new ChatUtils(configManager, this);

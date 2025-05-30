@@ -1,8 +1,8 @@
-package org.eldrygo.XLaunchPads.Managers;
+package dev.drygo.XLaunchPads.Managers;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.eldrygo.XLaunchPads.XLaunchPads;
+import dev.drygo.XLaunchPads.XLaunchPads;
 
 import java.io.File;
 
@@ -12,6 +12,16 @@ public class ConfigManager {
 
     public ConfigManager(XLaunchPads plugin) {
         this.plugin = plugin;
+    }
+    public void loadConfig() {
+        try {
+            plugin.saveDefaultConfig();
+            plugin.reloadConfig();
+            plugin.getLogger().info("✅ The config.yml file successfully loaded.");
+        } catch (Exception e) {
+            plugin.getLogger().severe("❌ Failed on loading config.yml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     public void reloadMessages() {
         try {

@@ -1,4 +1,4 @@
-package org.eldrygo.XLaunchPads.Command;
+package dev.drygo.XLaunchPads.Command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,13 +14,16 @@ public class XLaunchPadsTabCompleter implements TabCompleter {
         List<String> completions = new ArrayList<>();
 
         if (args.length == 1) {
-            if ("reload".startsWith(args[0].toLowerCase()) && (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
+            if ("reload".startsWith(args[0].toLowerCase()) || (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
                 completions.add("reload");
             }
-            if ("set".startsWith(args[0].toLowerCase()) && (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
+            if ("set".startsWith(args[0].toLowerCase()) || (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
                 completions.add("reload");
+            }
+            if ("set".startsWith(args[0].toLowerCase()) || (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
+                completions.add("help");
             }
         }
-        return null;
+        return completions;
     }
 }

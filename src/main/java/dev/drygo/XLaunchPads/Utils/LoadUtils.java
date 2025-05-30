@@ -1,11 +1,11 @@
-package org.eldrygo.XLaunchPads.Utils;
+package dev.drygo.XLaunchPads.Utils;
 
-import org.eldrygo.XLaunchPads.Command.XLaunchPadsCommand;
-import org.eldrygo.XLaunchPads.Command.XLaunchPadsTabCompleter;
-import org.eldrygo.XLaunchPads.Listeners.LaunchPadListener;
-import org.eldrygo.XLaunchPads.Managers.ConfigManager;
-import org.eldrygo.XLaunchPads.Managers.LaunchPadsManager;
-import org.eldrygo.XLaunchPads.XLaunchPads;
+import dev.drygo.XLaunchPads.Command.XLaunchPadsCommand;
+import dev.drygo.XLaunchPads.Command.XLaunchPadsTabCompleter;
+import dev.drygo.XLaunchPads.Listeners.LaunchPadListener;
+import dev.drygo.XLaunchPads.Managers.ConfigManager;
+import dev.drygo.XLaunchPads.Managers.LaunchPadsManager;
+import dev.drygo.XLaunchPads.XLaunchPads;
 
 public class LoadUtils {
     private final XLaunchPads plugin;
@@ -30,14 +30,7 @@ public class LoadUtils {
     }
     public void loadConfigFiles() {
         plugin.getLogger().info("Loading config files...");
-        try {
-            plugin.reloadConfig();
-            plugin.config = plugin.getConfig();
-            plugin.getLogger().info("✅ The config.yml file has been loaded successfully.");
-        } catch (Exception e) {
-            plugin.getLogger().severe("❌ Failed to reload plugin configuration due to an unexpected error: " + e.getMessage());
-            e.printStackTrace();
-        }
+        configManager.loadConfig();
         configManager.reloadMessages();
         configManager.setPrefix(ChatUtils.formatColor(configManager.getMessageConfig().getString("prefix", "#ff902e&lx&r&lLaunchPads &cDefault Prefix &8»&r")));
     }
