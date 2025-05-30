@@ -40,10 +40,7 @@ public class LaunchPadListener implements Listener {
         if (handItem == null || handItem.getType().isAir()) return;
 
         // Verifica si la lista existe y es válida
-        if (!plugin.getConfig().isList("item-launch.items")) {
-            plugin.getLogger().warning("Config key 'item-launch.items' is missing or not a list.");
-            return;
-        }
+        if (!plugin.getConfig().isList("item-launch.items")) return;
 
         List<Map<?, ?>> itemsConfig = plugin.getConfig().getMapList("item-launch.items");
         if (itemsConfig.isEmpty()) return;

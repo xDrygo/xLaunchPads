@@ -3,6 +3,7 @@ package dev.drygo.XLaunchPads.Command;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -14,15 +15,8 @@ public class XLaunchPadsTabCompleter implements TabCompleter {
         List<String> completions = new ArrayList<>();
 
         if (args.length == 1) {
-            if ("reload".startsWith(args[0].toLowerCase()) || (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
-                completions.add("reload");
-            }
-            if ("set".startsWith(args[0].toLowerCase()) || (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
-                completions.add("reload");
-            }
-            if ("set".startsWith(args[0].toLowerCase()) || (sender.hasPermission("xlaunchpads.admin") || sender.isOp())) {
-                completions.add("help");
-            }
+            List<String> options = List.of("set", "reload", "help", "info");
+            StringUtil.copyPartialMatches(args[0], options, completions);
         }
         return completions;
     }
